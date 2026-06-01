@@ -1,0 +1,191 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: #0b0614; }
+
+/* ── JOIN SCREEN ── */
+#discord-btn {
+  position: absolute; top: 20px; left: 20px; z-index: 101;
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 16px; border-radius: 12px;
+  background: #1c1329;
+  border: 1px solid #4f337a;
+  color: #cc99ff;
+  text-decoration: none;
+  font-family: 'IM Fell English SC', serif;
+  font-size: 14px;
+}
+#discord-btn span { color: #fff;
+  transition: background 0.2s, transform 0.15s;
+}
+#discord-btn:hover { background: #2e1a45; transform: scale(1.05); }
+
+#class-desc-btn {
+  position: absolute; top: 70px; left: 20px; z-index: 101;
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 16px; border-radius: 12px;
+  background: #1c1329;
+  border: 1px solid #4f337a;
+  color: #cc99ff;
+  text-decoration: none;
+  font-family: 'IM Fell English SC', serif;
+  font-size: 14px;
+  transition: background 0.2s, transform 0.15s;
+}
+#class-desc-btn span { color: #fff; }
+#class-desc-btn:hover { background: #2e1a45; transform: scale(1.05); }
+
+#joinScreen {
+  position: fixed; inset: 0; z-index: 100;
+  background: url('assets/background.webp') center center / cover no-repeat;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'IM Fell English SC', serif;
+}
+.join-container {
+  text-align: center;
+  margin-top: 120px;
+}
+.join-container .subtitle { color: #7a5a99; font-size: 12px; letter-spacing: 4px; margin-bottom: 32px; }
+#name-input {
+  padding: 12px 20px; width: 260px; font-size: 18px;
+  border-radius: 8px; border: none;
+  background-color: #f4ecff; color: #1a0e28;
+  font-family: inherit; display: block; margin: 0 auto 16px;
+}
+#name-input::placeholder { color: #888; }
+#code-input {
+  padding: 8px 16px; width: 260px; font-size: 15px;
+  border-radius: 8px; border: none;
+  background-color: #f4ecff; color: #1a0e28;
+  font-family: inherit; display: block; margin: 0 auto 16px;
+}
+#code-input::placeholder { color: #aaa; }
+#join-btn {
+  padding: 10px 32px; font-size: 18px; border: none;
+  border-radius: 8px; background-color: #7c4dff; color: white;
+  cursor: pointer; font-family: inherit;
+  transition: background-color 0.2s, box-shadow 0.2s;
+  display: block; margin: 0 auto 28px;
+}
+#join-btn:hover { background-color: #693ee8; box-shadow: 0 0 16px #b896ff; }
+#join-btn:disabled { opacity: 0.35; cursor: default; box-shadow: none; }
+#spectate-btn {
+  padding: 8px 24px; font-size: 14px; border: 1px solid #554466;
+  border-radius: 8px; background-color: transparent; color: #aa88cc;
+  cursor: pointer; font-family: inherit;
+  transition: background-color 0.2s, box-shadow 0.2s, color 0.2s;
+  display: block; margin: 24px auto 12px;
+}
+#spectate-btn:hover { background-color: #2a1a3a; color: #cc99ff; box-shadow: 0 0 10px #7744aa55; }
+#session-select, #team-select {
+  padding: 10px 16px; width: 260px; font-size: 16px;
+  border-radius: 8px; border: none;
+  background-color: #f4ecff; color: #1a0e28;
+  font-family: inherit; display: block; margin: 0 auto 16px;
+  cursor: pointer; appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231a0e28' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center;
+}
+
+.class-selector { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+.class-card {
+  width: 100px; border-radius: 12px;
+  border: 2px solid #4f337a; background-color: #1c1329;
+  cursor: pointer; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  overflow: hidden;
+}
+.class-card:hover { box-shadow: 0 0 10px rgba(200,170,255,0.5); transform: translateY(-2px); }
+.class-card.selected {
+  transform: scale(1.12) translateY(-4px);
+  box-shadow: 0 0 18px var(--glow);
+  border-color: var(--glow);
+  background-color: #2e1a45;
+}
+.class-card .icon {
+  font-size: 36px; height: 70px;
+  display: flex; align-items: center; justify-content: center;
+}
+.class-card .label {
+  font-size: 11px; letter-spacing: 2px;
+  color: var(--glow); padding: 6px 4px;
+  font-family: 'IM Fell English SC', serif;
+  border-top: 1px solid #4f337a;
+}
+
+/* ── LOADING SCREEN ── */
+#loadingScreen {
+  position: fixed; inset: 0; z-index: 500;
+  display: none; align-items: center; justify-content: center;
+  background: rgba(11, 6, 20, 0.95);
+  font-family: 'IM Fell English SC', serif;
+  color: #cc99ff;
+  font-size: 28px;
+  letter-spacing: 4px;
+}
+
+/* ── GAME SCREEN ── */
+#gameScreen { position: fixed; inset: 0; display: none; }
+#gameScreen canvas { display: block; }
+
+/* ── SESSION COUNTS PANEL ── */
+#session-counts-panel {
+  position: fixed; bottom: 16px; right: 16px;
+  z-index: 300; background: rgba(0,0,0,0.7);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px; padding: 8px 14px;
+  font-family: monospace; font-size: 13px;
+  color: #ccc; pointer-events: none;
+  display: none; flex-direction: column; gap: 3px;
+}
+#session-counts-title {
+  color: #fff; font-size: 12px; letter-spacing: 1px;
+  margin-bottom: 2px;
+}
+.session-count-row { color: #aac4ff; }
+
+/* ── DEBUG OVERLAY ── */
+#debug-overlay {
+  position: fixed; top: 10px; left: 10px;
+  z-index: 300; display: none;
+  flex-direction: column; align-items: flex-start; gap: 5px;
+  pointer-events: none;
+}
+.debug-line {
+  background: rgba(0,0,0,0.7); border-radius: 6px;
+  padding: 4px 16px; font-family: monospace; font-size: 13px;
+  border: 1px solid rgba(255,255,255,0.1); white-space: nowrap;
+}
+.debug-line.ok    { color: #44ee88; border-color: rgba(68,238,136,0.3); }
+.debug-line.warn  { color: #ffcc44; border-color: rgba(255,204,68,0.3); }
+.debug-line.error { color: #ff4455; border-color: rgba(255,68,85,0.3); }
+.debug-line.info  { color: #88aaff; border-color: rgba(136,170,255,0.3); }
+
+/* ── CHAT BOX ── */
+#chatBox {
+  position: fixed; bottom: 16px; right: 16px; z-index: 150;
+  width: 300px; display: none; flex-direction: column; gap: 4px;
+  pointer-events: none;
+}
+#chatInputRow { pointer-events: auto; }
+#chatInput {
+  width: 100%; padding: 6px 10px; font-size: 13px;
+  border-radius: 6px; border: 1px solid rgba(200,170,255,0.35);
+  background: rgba(0,0,0,0.72); color: #eee;
+  font-family: monospace; outline: none; display: none;
+}
+#chatInput:focus { border-color: #9b6dff; }
+
+/* ── DEATH SCREEN ── */
+#deathScreen {
+  position: fixed; inset: 0; z-index: 200; display: none;
+  background: rgba(0,0,0,0.85); flex-direction: column;
+  align-items: center; justify-content: center;
+  font-family: 'IM Fell English SC', serif;
+}
+#deathScreen h2 { color: #cc2244; font-size: 56px; margin-bottom: 12px; letter-spacing: 4px; }
+#deathScreen p  { color: #aaa; font-size: 20px; margin-bottom: 36px; }
+#respawn-btn {
+  padding: 12px 44px; font-size: 18px; font-family: inherit;
+  border: none; border-radius: 8px; cursor: pointer;
+  background: #7c4dff; color: #fff;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+#respawn-btn:hover { background: #9b6dff; box-shadow: 0 0 16px #b896ff; }
